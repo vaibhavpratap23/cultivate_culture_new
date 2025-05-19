@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+/* Main Container */
+.main {
+    width: 100%;
+    max-width: 100%; /* Ensures it doesn't exceed the viewport width */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url(./2.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Hides any overflowing content */
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    max-width: 100%; /* Ensures it doesn't exceed the viewport width */
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon {
+    width: 200px;
+}
+
+.logo {
+    color: #ff7200;
+    font-size: 30px;
+    font-family: Arial;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+}
+
+.menu ul li {
+    margin-left: 20px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+.menu ul li a:hover {
+    color: #ff7200;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+}
+
+.srch {
+    width: 200px;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid #ff7200;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn {
+    width: 100px;
+    height: 40px;
+    background: #ff7200;
+    border: 2px solid #ff7200;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Content Section */
+.content {
+    width: 100%;
+    max-width: 100%; /* Ensures it doesn't exceed the viewport width */
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+/* Left Side: CultivateCulture Heading and Register Button */
+.left-side {
+    width: 50%;
+    text-align: left;
+}
+
+.left-side h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.left-side .par {
+    font-family: Arial;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+
+.left-side .cn {
+    width: 160px;
+    height: 40px;
+    background: #ff7200;
+    border: none;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s ease;
+    color: #000;
+}
+
+.left-side .cn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Right Side: Buyer Login Form */
+.right-side {
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form {
+    width: 100%;
+    max-width: 280px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+}
+
+.form h2 {
+    font-family: sans-serif;
+    color: #ff7200;
+    font-size: 22px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 20px;
+}
+
+.form input {
+    width: 100%;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid #ff7200;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+.form input:focus {
+    outline: none;
+}
+
+::placeholder {
+    color: #fff;
+    font-family: Arial;
+}
+
+.btnn {
+    width: 100%;
+    height: 40px;
+    background: #ff7200;
+    border: none;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.4s ease;
+    margin-top: 20px;
+}
+
+.btnn:hover {
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+}
+
+.form .link {
+    font-family: Arial;
+    font-size: 17px;
+    padding-top: 20px;
+}
+
+.form .link a {
+    text-decoration: none;
+    color: #ff7200;
+}
+
+.liw {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.icons a {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 5px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .left-side, .right-side {
+        width: 100%;
+        text-align: center;
+    }
+
+    .right-side {
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    .form {
+        width: 90%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .left-side h1 {
+        font-size: 40px;
+    }
+
+    .form {
+        width: 90%;
+    }
+}

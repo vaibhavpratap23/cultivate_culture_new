@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Farm Lease - CultivateCulture</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --dark-green: #1b5e20;
+            --light-green: #e8f5e9;
+            --accent-yellow: #ffd600;
+            --accent-red: #d32f2f;
+            --white: #ffffff;
+            --off-white: #f5f5f5;
+            --text-dark: #212121;
+            --text-light: #757575;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--off-white);
+            line-height: 1.6;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--accent-yellow) !important;
+        }
+        
+        .carousel {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .carousel-item img {
+            object-fit: cover;
+            height: 500px;
+            width: 100%;
+        }
+        
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            padding: 20px;
+        }
+        
+        .product-header {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .product-title {
+            font-weight: 700;
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .specs-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .specs-title {
+            color: var(--primary-green);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-green);
+        }
+        
+        .specs-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .specs-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .specs-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .specs-list i {
+            color: var(--primary-green);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            min-width: 24px;
+            text-align: center;
+        }
+        
+        .price-card {
+            background-color: var(--dark-green);
+            color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 2rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+            margin: 1rem 0;
+        }
+        
+        .price-period {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .btn-cta {
+            background-color: var(--accent-yellow);
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            border: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+        
+        .btn-cta:hover {
+            background-color: #ffc107;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .btn-danger {
+            background-color: var(--accent-red);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-danger:hover {
+            background-color: #b71c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-item {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-right: 1rem;
+            min-width: 40px;
+        }
+        
+        .feature-text {
+            font-weight: 500;
+        }
+        
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            font-weight: 700;
+            color: var(--accent-yellow);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links h5 {
+            color: var(--accent-yellow);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-yellow);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-yellow);
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 300px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-leaf mr-2"></i>CultivateCulture
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-home mr-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-search mr-1"></i> Browse Farms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user mr-1"></i> My Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart mr-1"></i> Cart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="product-header">
+        <div class="container text-center">
+            <h1 class="product-title">Organic Spice Farm in Kerala</h1>
+            <p class="product-subtitle">Experience authentic organic farming in the lush Western Ghats</p>
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                <div class="mr-3">
+                    <i class="fas fa-map-marker-alt mr-1"></i> Wayanad, Kerala
+                </div>
+                <div class="mr-3">
+                    <i class="fas fa-star text-warning mr-1"></i> 4.8 (24 reviews)
+                </div>
+                <div>
+                    <i class="fas fa-calendar-alt mr-1"></i> Available year-round
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div id="farmCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#farmCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#farmCarousel" data-slide-to="1"></li>
+                        <li data-target="#farmCarousel" data-slide-to="2"></li>
+                        <li data-target="#farmCarousel" data-slide-to="3"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../images/istockphoto-1270570904-612x612.jpg" alt="Farm landscape">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../images/240_F_682311846_FVNr7T3yAz3ZrEUKm9RRvrnUBVvnB2Fr.jpg" alt="Spice plants">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../images/land 10.jpg" alt="Farm workers">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../images/c226cbdb096e211d37e51463de77dac3.jpg" alt="Farm products">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#farmCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#farmCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+                <div class="specs-card">
+                    <h3 class="specs-title"><i class="fas fa-clipboard-list mr-2"></i>Farm Specifications</h3>
+                    <ul class="specs-list">
+                        <li>
+                            <i class="fas fa-ruler-combined"></i>
+                            <span><strong>Area:</strong> 5 acres of fertile land</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-tint"></i>
+                            <span><strong>Water Source:</strong> Natural spring and rainwater harvesting</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-seedling"></i>
+                            <span><strong>Main Crops:</strong> Black pepper, cardamom, vanilla, turmeric</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-certificate"></i>
+                            <span><strong>Certification:</strong> USDA Organic, India Organic</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-home"></i>
+                            <span><strong>Facilities:</strong> Farmhouse, storage, processing unit</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="specs-card">
+                    <h3 class="specs-title"><i class="fas fa-file-signature mr-2"></i>Lease Terms & Conditions</h3>
+                    <ul class="specs-list">
+                        <li>
+                            <i class="far fa-clock"></i>
+                            <span><strong>Lease Duration:</strong> Minimum 1 year, renewable</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-rupee-sign"></i>
+                            <span><strong>Rent Amount:</strong> ₹25,000/month (negotiable for long-term)</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-ban"></i>
+                            <span><strong>Use Restrictions:</strong> Organic farming only, no chemical inputs</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-tools"></i>
+                            <span><strong>Maintenance:</strong> Tenant responsible for routine maintenance</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-user-shield"></i>
+                            <span><strong>Insurance:</strong> Tenant must carry liability insurance</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-tree"></i>
+                            <span><strong>Environmental:</strong> Sustainable practices required</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="price-card">
+                    <h3><i class="fas fa-tag mr-2"></i>Lease Price</h3>
+                    <div class="price">₹25,000</div>
+                    <div class="price-period">per month</div>
+                    <p>Minimum 1 year lease</p>
+                    <button class="btn btn-cta btn-block">Inquire Now</button>
+                    <button class="btn btn-danger btn-block">Book a Visit</button>
+                </div>
+
+                <div class="specs-card">
+                    <h3 class="specs-title"><i class="fas fa-user-tie mr-2"></i>About the Owner</h3>
+                    <div class="media mb-3">
+                        <img src="https://randomuser.me/api/portraits/men/42.jpg" class="mr-3 rounded-circle" width="60" alt="Owner">
+                        <div class="media-body">
+                            <h5 class="mt-0">Rajesh Kumar</h5>
+                            <p>Organic farmer for 15 years</p>
+                        </div>
+                    </div>
+                    <p>Our family has been cultivating spices using traditional organic methods for three generations. We're looking for responsible farmers who share our commitment to sustainable agriculture.</p>
+                    <button class="btn btn-outline-success btn-block mt-3">Contact Owner</button>
+                </div>
+
+                <div class="specs-card">
+                    <h3 class="specs-title"><i class="fas fa-map-marked-alt mr-2"></i>Location</h3>
+                    <div class="embed-responsive embed-responsive-16by9 mb-3">
+                        <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.123456789012!2d76.12345678901234!3d11.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDA3JzI0LjQiTiA3NsKwMDcnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <p><i class="fas fa-map-marker-alt mr-2 text-success"></i> Near Vythiri, Wayanad, Kerala</p>
+                    <p><i class="fas fa-road mr-2 text-success"></i> 12km from main road, accessible by vehicle</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-water"></i>
+                </div>
+                <div class="feature-text">Reliable water source with irrigation system</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-solar-panel"></i>
+                </div>
+                <div class="feature-text">Solar power available</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-tractor"></i>
+                </div>
+                <div class="feature-text">Farm equipment available for use</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="feature-text">Living quarters available</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-leaf mr-2"></i>CultivateCulture
+                    </div>
+                    <p>Connecting farmers with land and cultural experiences across India.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#">Browse Farms</a></li>
+                        <li><a href="#">List Your Farm</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center pt-3">
+                <p>&copy; 2024 CultivateCulture. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Farming Experience Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #5cb85c;
+            --accent-color: #ff9800;
+            --dark-color: #1b5e20;
+            --light-color: #f1f8e9;
+            --text-color: #333;
+            --text-light: #666;
+            --white: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 2rem;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            padding-left: 3rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-bar input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.2);
+        }
+        
+        .search-bar i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-actions a {
+            margin-left: 1.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-actions a:hover {
+            color: var(--primary-color);
+        }
+        
+        .user-actions i {
+            margin-right: 0.5rem;
+        }
+        
+        .cart-count {
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
+        }
+        
+        .sub-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 0;
+        }
+        
+        .sub-header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .sub-header button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .sub-header button:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/farm-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e68a00;
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .product-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .product-location {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-location i {
+            margin-right: 0.5rem;
+        }
+        
+        .product-description {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .product-rating {
+            color: var(--accent-color);
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 0.7rem;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--dark-color);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-text {
+            color: var(--text-light);
+        }
+        
+        #about, #contact {
+            padding: 4rem 0;
+            background-color: var(--white);
+        }
+        
+        .about-content, .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-method i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            .search-bar {
+                width: 100%;
+                margin: 1rem 0;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: space-around;
+                margin-top: 1rem;
+            }
+            
+            .sub-header .container {
+                flex-wrap: wrap;
+                padding: 0 1rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="main-header">
+            <div class="logo">
+                <img src="./images/cultivate culture logo (1)_prev_ui.png" alt="Cultivate Culture Logo">
+                <h1>Cultivate Culture</h1>
+            </div>
+            
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search farming experiences...">
+            </div>
+            
+            <div class="user-actions">
+                <a href="#"><i class="fas fa-user"></i> Account</a>
+                <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                <a href="#"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count">3</span></a>
+            </div>
+        </div>
+        
+        <div class="sub-header">
+            <div class="container">
+                <button onclick="location.href='https://en.wikipedia.org/wiki/India_Organic'">Get Organic Certification</button>
+                <button onclick="location.href='https://apeda.gov.in/apedawebsite/organic/organic_products.htm'">Export Your Products</button>
+                <button onclick="location.href='https://thefarmersstore.in/'">Farmer's Store</button>
+                <button onclick="location.href='#about'">Our Story</button>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Experience Authentic Indian Farming</h2>
+            <p>Connect with rural communities, learn traditional farming methods, and immerse yourself in local culture</p>
+            <a href="#products" class="btn">Explore Experiences</a>
+        </div>
+    </section>
+    
+    <section class="container" id="products">
+        <h2 class="section-title">Featured Farming Experiences</h2>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3 class="feature-title">Organic Certification</h3>
+                <p class="feature-text">Learn how to get your farm certified organic with our step-by-step guidance.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3 class="feature-title">Global Export</h3>
+                <p class="feature-text">We help farmers connect with international markets for their organic produce.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3 class="feature-title">Cultural Exchange</h3>
+                <p class="feature-text">Experience authentic rural life while contributing to sustainable farming.</p>
+            </div>
+        </div>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <a href="./persl.html" style="text-decoration: none; color: inherit;">
+                    <div class="product-image">
+                        <img src="./images/land 1.jpg" alt="Organic Farm in Kerala">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Kerala Spice Garden</h3>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i> Wayanad, Kerala
+                        </div>
+                        <p class="product-description">Experience spice cultivation in this lush organic farm with traditional Kerala hospitality.</p>
+                        <div class="product-meta">
+                            <span class="product-price">₹2,500/day</span>
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i> 4.8
+                            </span>
+                        </div>
+                        <button class="add-to-cart">Book Experience</button>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="product-card">
+                <a href="./persl.html" style="text-decoration: none; color: inherit;">
+                    <div class="product-image">
+                        <img src="./images/land 2.jpg" alt="Tea Plantation in Darjeeling">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Darjeeling Tea Estate</h3>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i> Darjeeling, West Bengal
+                        </div>
+                        <p class="product-description">Learn tea plucking and processing in this heritage tea garden with mountain views.</p>
+                        <div class="product-meta">
+                            <span class="product-price">₹3,200/day</span>
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i> 4.9
+                            </span>
+                        </div>
+                        <button class="add-to-cart">Book Experience</button>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="product-card">
+                <a href="./persl.html" style="text-decoration: none; color: inherit;">
+                    <div class="product-image">
+                        <img src="../images/land 3.jpg" alt="Rice Fields in Punjab">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Punjab Wheat & Rice Farm</h3>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i> Ludhiana, Punjab
+                        </div>
+                        <p class="product-description">Experience the breadbasket of India with traditional farming techniques.</p>
+                        <div class="product-meta">
+                            <span class="product-price">₹1,800/day</span>
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i> 4.5
+                            </span>
+                        </div>
+                        <button class="add-to-cart">Book Experience</button>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="product-card">
+                <a href="./persl.html" style="text-decoration: none; color: inherit;">
+                    <div class="product-image">
+                        <img src="../images/land 8.jpg" alt="Coffee Plantation in Karnataka">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Coorg Coffee Plantation</h3>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i> Coorg, Karnataka
+                        </div>
+                        <p class="product-description">Learn coffee cultivation and processing in this scenic plantation.</p>
+                        <div class="product-meta">
+                            <span class="product-price">₹2,800/day</span>
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i> 4.7
+                            </span>
+                        </div>
+                        <button class="add-to-cart">Book Experience</button>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="product-card">
+                <a href="./persl.html" style="text-decoration: none; color: inherit;">
+                    <div class="product-image">
+                        <img src="../images/land 5.jpg" alt="Organic Vegetables in Maharashtra">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Maharashtra Organic Farm</h3>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i> Nashik, Maharashtra
+                        </div>
+                        <p class="product-description">Experience diverse vegetable cultivation with organic methods.</p>
+                        <div class="product-meta">
+                            <span class="product-price">₹2,000/day</span>
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i> 4.6
+                            </span>
+                        </div>
+                        <button class="add-to-cart">Book Experience</button>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="product-card">
+                <a href="./persl.html" style="text-decoration: none; color: inherit;">
+                    <div class="product-image">
+                        <img src="../images/land 6.jpg" alt="Apple Orchard in Himachal">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Himachal Apple Orchard</h3>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i> Shimla, Himachal Pradesh
+                        </div>
+                        <p class="product-description">Learn fruit cultivation in the Himalayan foothills with stunning views.</p>
+                        <div class="product-meta">
+                            <span class="product-price">₹3,500/day</span>
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i> 4.9
+                            </span>
+                        </div>
+                        <button class="add-to-cart">Book Experience</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Our Mission</h2>
+                <p>Cultivate Culture bridges the gap between international travelers seeking authentic farming experiences and Indian farmers with land to share. We create meaningful cultural exchanges while supporting sustainable agriculture and rural economies.</p>
+                <p>Founded in 2020, we've connected over 1,200 visitors with farming communities across 15 Indian states, generating supplemental income for farmers while preserving traditional agricultural knowledge.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Get In Touch</h2>
+                <p>Have questions about our farming experiences or want to list your farm? We'd love to hear from you.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@cultivateculture.com</span>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 98765 43210</span>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Bangalore, India</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="./images/cultivate-culture-logo-white.png" alt="Cultivate Culture Logo">
+                    <h3>Cultivate Culture</h3>
+                </div>
+                <p>Connecting travelers with authentic Indian farming experiences since 2020.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#products">Experiences</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>For Farmers</h3>
+                <ul>
+                    <li><a href="#">List Your Farm</a></li>
+                    <li><a href="#">Organic Certification</a></li>
+                    <li><a href="#">Export Assistance</a></li>
+                    <li><a href="#">Farmer Resources</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 Cultivate Culture. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
